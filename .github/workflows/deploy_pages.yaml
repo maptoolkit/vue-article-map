@@ -1,0 +1,52 @@
+name: Deploy demo to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+permissions:
+  id-token: write
+  pages: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          echo "@maptoolkit:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+          npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MAPTOOLKIT_PACKAGES_TOKEN }}
+
+      - name: Build demo
+        run: |
+          echo "VITE_MAPTOOLKIT_APIKEY=${NODE_API_KEY}" > .env
+          npm run build:demo
+        env:
+          NODE_API_KEY: ${{ secrets.MAPTOOLKIT_API_KEY }}
+
+      - name: Setup pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

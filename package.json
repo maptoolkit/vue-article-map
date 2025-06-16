@@ -1,0 +1,49 @@
+{
+  "name": "@maptoolkit/vue-article-map",
+  "version": "0.0.1",
+  "type": "module",
+  "author": "Daniel Böck <daniel@maptoolkit.com>",
+  "scripts": {
+    "dev": "vite --config demo/vite.config.ts",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:demo": "vue-tsc --noEmit && vite build --config demo/vite.config.ts",
+    "pretty": "prettier ./**/*.{vue,ts,js,json,css,html,md} --write"
+  },
+  "dependencies": {
+    "@maptoolkit/maps-sdk": "^11.0.0-alpha.28",
+    "@types/geojson": "^7946.0.16",
+    "pinia": "^2.2.2",
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.14.5",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/tsconfig": "^0.5.1",
+    "prettier": "^3.5.3",
+    "typescript": "~5.4.0",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vue-tsc": "^2.0.21"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/article-map.umd.js",
+  "module": "dist/article-map.es.js",
+  "types": "./dist/article-map.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/article-map.es.js",
+      "require": "./dist/article-map.umd.js",
+      "types": "./dist/article-map.d.ts"
+    },
+    "./css": {
+      "import": "./dist/style.css"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maptoolkit/vue-article-map.git"
+  }
+}
