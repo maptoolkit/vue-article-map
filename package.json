@@ -1,6 +1,6 @@
 {
   "name": "@maptoolkit/vue-article-map",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha",
   "type": "module",
   "author": "Daniel Böck <daniel@maptoolkit.com>",
   "scripts": {
