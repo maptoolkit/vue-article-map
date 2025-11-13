@@ -18,21 +18,16 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Setup registry authentication
         run: | 
           echo "@maptoolkit:registry=https://npm.pkg.github.com/" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-          npm install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MAPTOOLKIT_PACKAGES_TOKEN }}
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Build project
         run: npm run build
 
       - name: Publish to GitHub Packages  
-        run: | 
-          echo "@maptoolkit:registry=https://npm.pkg.github.com/" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish
