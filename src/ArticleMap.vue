@@ -206,7 +206,7 @@ async function onMouseMove(ev: maptoolkit.MapLayerMouseEvent | maptoolkit.MapLay
       } else {
         setPopupContent(popupContent);
       }
-      console.log(popup._map);
+      
       if (!popup._map) {
         popup.addTo(map);
       }
