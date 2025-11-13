@@ -6,9 +6,16 @@ export default defineConfig(({ command }) => {
     base: "./",
     root: "demo",
     plugins: [vue()],
+    optimizeDeps: {
+      include: ["@maptoolkit/maps-sdk"],
+      esbuildOptions: {
+        target: "esnext",
+      },
+    },
     build:
       command === "build"
         ? {
+            target: "esnext",
             outDir: "../dist",
             emptyOutDir: true,
             rollupOptions: {

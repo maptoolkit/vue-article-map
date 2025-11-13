@@ -8,7 +8,15 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   plugins: [vue(), dts({ outDir: "dist", rollupTypes: true })],
+
+  optimizeDeps: {
+    include: ["@maptoolkit/maps-sdk"],
+    esbuildOptions: {
+      target: "esnext",
+    },
+  },
   build: {
+    target: "esnext",
     lib: {
       entry: fileURLToPath(new URL("src/export.ts", import.meta.url)),
       name: "ArticleMap",
