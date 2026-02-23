@@ -10,7 +10,7 @@
     "pretty": "prettier ./**/*.{vue,ts,js,json,css,html,md} --write"
   },
   "dependencies": {
-    "@maptoolkit/maps-sdk": "^11.0.0-alpha.28",
+    "@maptoolkit/maps-sdk": "^11.0.0-alpha.beta.5",
     "@types/geojson": "^7946.0.16",
     "pinia": "^2.2.2",
     "vue": "^3.4.29"
