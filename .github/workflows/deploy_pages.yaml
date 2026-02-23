@@ -10,6 +10,7 @@ permissions:
   id-token: write
   pages: write
   contents: read
+  packages: read
 
 jobs:
   deploy:
@@ -26,7 +27,7 @@ jobs:
 
       - name: Setup registry authentication
         run: |
-          echo "@maptoolkit:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "@maptoolkit:registry=https://npm.pkg.github.com" > .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
 
       - name: Install dependencies
