@@ -35,7 +35,7 @@ jobs:
 
       - name: Build demo
         run: |
-          echo "VITE_MAPTOOLKIT_APIKEY=${NODE_API_KEY}" > .env
+          echo "VITE_MAPTOOLKIT_APIKEY=${NODE_API_KEY}" > demo/.env
           npm run build:demo
         env:
           NODE_API_KEY: ${{ secrets.MAPTOOLKIT_API_KEY }}
